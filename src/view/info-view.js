@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import { createElement } from '../render.js';
 
 function createInfoTripTemplate() {
   return (
@@ -16,7 +16,7 @@ function createInfoTripTemplate() {
   );
 }
 
-export default class InfoTripView {
+export default class InfoView {
   getTemplate() {
     return createInfoTripTemplate();
   }

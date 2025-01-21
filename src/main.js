@@ -1,14 +1,18 @@
 import BoardPresenter from './presenter/board-presenter.js';
-// import InfoTripView from './view/info-trip-view.js';
-// import FilterView from './view/filter-view.js';
-// import {render, RenderPosition} from './render.js';
+import FilterPresenter from './presenter/filter-presenter.js';
+import InfoPresenter from './presenter/info-presenter.js';
 
-// // const siteMainElement = document.querySelector('.main');
-// const siteHeaderElement = document.querySelector('.trip-main');
-// const filtersContainer = document.querySelector('.trip-controls__filters');
-const tripEventsContainer = document.querySelector('.trip-events');
-const boardPresenter = new BoardPresenter({container: tripEventsContainer});
+const header = document.querySelector('.page-header');
+const infoHeader = header.querySelector('.trip-main');
+const filterHeader = header.querySelector('.trip-controls__filters');
 
-// render(new InfoTripView(), siteHeaderElement, RenderPosition.BEFOREBEGIN);
-// render(new FilterView(), filtersContainer);
+const main = document.querySelector('.page-main');
+const tripEventsContainer = main.querySelector('.trip-events');
+
+const boardPresenter = new BoardPresenter({boardContainer: tripEventsContainer});
+const filterPresenter = new FilterPresenter({filterContainer: filterHeader});
+const infoPresenter = new InfoPresenter({infoContainer: infoHeader});
+
 boardPresenter.init();
+filterPresenter.init();
+infoPresenter.init();
