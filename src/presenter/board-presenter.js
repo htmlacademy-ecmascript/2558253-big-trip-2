@@ -15,9 +15,9 @@ export default class BoardPresenter {
   }
 
   init() {
-    const points = this.pointModel.getPoints();
-    const destinations = this.pointModel.getDestinations();
-    const offers = this.pointModel.getOffers();
+    const points = this.pointModel.points;
+    const destinations = this.pointModel.destinations;
+    const offers = this.pointModel.offers;
 
     render(this.sortComponent, this.boardContainer);
     render(this.eventsListComponent, this.boardContainer);

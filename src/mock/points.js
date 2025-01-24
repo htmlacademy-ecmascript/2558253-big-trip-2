@@ -1,7 +1,7 @@
 const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808a',
-    basePrice: 1100,
+    basePrice: 1500,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-21T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca1',
@@ -16,7 +16,7 @@ const points = [
   },
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808b',
-    basePrice: 1100,
+    basePrice: 1000,
     dateFrom: '2019-07-22T22:55:56.845Z',
     dateTo: '2019-07-25T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca2',
@@ -29,7 +29,7 @@ const points = [
   },
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808c',
-    basePrice: 1100,
+    basePrice: 3400,
     dateFrom: '2019-07-26T22:55:56.845Z',
     dateTo: '2019-07-30T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca3',
@@ -43,7 +43,7 @@ const points = [
   },
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808d',
-    basePrice: 1100,
+    basePrice: 900,
     dateFrom: '2019-07-26T22:55:56.845Z',
     dateTo: '2019-07-30T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca4',
@@ -53,7 +53,7 @@ const points = [
   },
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808e',
-    basePrice: 1100,
+    basePrice: 5800,
     dateFrom: '2019-08-01T22:55:56.845Z',
     dateTo: '2019-09-14T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca5',
