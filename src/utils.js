@@ -17,19 +17,15 @@ function getDateDifference(dateFrom, dateTo) {
   const differenceInMinutes = endDate.diff(startDate, 'minute');
   const differenceInHours = endDate.diff(startDate, 'hour');
   const differenceInDays = endDate.diff(startDate, 'day');
-
+  const hours = differenceInHours % 24;
+  const minutes = differenceInMinutes % 60;
   // Форматируем результат в зависимости от разницы
   if (differenceInMinutes < 60) {
     return `${differenceInMinutes}M`;
   } else if (differenceInDays < 1) {
-    const hours = differenceInHours % 24;
-    const minutes = differenceInMinutes % 60;
-    return `${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M`.trim();
+    return `${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M`;
   } else {
-    const days = differenceInDays;
-    const hours = differenceInHours % 24;
-    const minutes = differenceInMinutes % 60;
-    return `${String(days).padStart(2, '0')}D ${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M`.trim();
+    return `${String(differenceInDays).padStart(2, '0')}D ${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M`;
   }
 }
 

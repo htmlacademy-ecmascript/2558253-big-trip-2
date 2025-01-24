@@ -4,11 +4,11 @@ import { capitalizeFirstLetter, humanizeDate } from '../utils.js';
 
 function createFormEditTemplate(point, destinations, offers) {
   const {basePrice, dateFrom, dateTo, type} = point;
-  const typeOffers = offers.find((off) => off.type === point.type).offers;
+  const typeOffers = offers.find((offer) => offer.type === point.type).offers;
   const pointOffers = typeOffers.filter((typeOffer) => point.offers.includes(typeOffer.id));
   const pointDestination = destinations.find((dest) => dest.id === point.destination);
   const {name, description, pictures} = pointDestination || {};
-  const pointId = point.id || 0;
+  const pointId = point.id || null;
 
   return (
     `<form class="event event--edit" action="#" method="post">
