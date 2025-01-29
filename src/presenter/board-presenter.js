@@ -1,5 +1,4 @@
-import { render } from '../framework/render.js';
-import { getDefaultPoint } from '../const.js';
+import { render, replace } from '../framework/render.js';
 import SortView from '../view/sort-view.js';
 import EventsListView from '../view/events-list-view.js';
 import FormEditView from '../view/form-edit-view.js';
@@ -23,8 +22,6 @@ export default class BoardPresenter {
 
     render(this.#sortComponent, this.#boardContainer);
     render(this.#eventsListComponent, this.#boardContainer);
-    render(new FormEditView(getDefaultPoint(), destinations, offers), this.#eventsListComponent.element);
-    render(new FormEditView(points[1], destinations, offers), this.#eventsListComponent.element);
 
     for (const point of points) {
       this.#renderPoint(point, destinations, offers);
@@ -32,7 +29,32 @@ export default class BoardPresenter {
   }
 
   #renderPoint(point, destinations, offers) {
-    const pointComponent = new PointView(point, destinations, offers);
+    const escKeyDownHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        replaceFormToPoint();
+        document.removeEventListener('keydown', escKeyDownHandler);
+      }
+    };
+
+    const pointComponent = new PointView(point, destinations, offers, () => {
+      replacePointToForm();
+      document.addEventListener('keydown', escKeyDownHandler);
+    });
+
+    const formEditComponent = new FormEditView(point, destinations, offers, () => {
+      replaceFormToPoint();
+      document.removeEventListener('keydown', escKeyDownHandler);
+    });
+
+    function replacePointToForm() {
+      replace(formEditComponent, pointComponent);
+    }
+
+    function replaceFormToPoint() {
+      replace(pointComponent, formEditComponent);
+    }
+
     render(pointComponent, this.#eventsListComponent.element);
   }
 }

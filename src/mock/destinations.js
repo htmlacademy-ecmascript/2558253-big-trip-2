@@ -5,7 +5,7 @@ const destinations = [
     name: 'Chamonix',
     pictures: [
       {
-        src: 'http://picsum.photos/300/200?r=0.0762563005163317',
+        src: 'https://loremflickr.com/248/152?random=1555',
         description: 'Chamonix parliament building'
       }
     ]
@@ -45,11 +45,11 @@ const destinations = [
         description: 'Phasellus eros mauris.'
       },
       {
-        src: 'https://loremflickr.com/248/152?random=68',
+        src: 'https://loremflickr.com/248/152?random=688',
         description: 'Phasellus eros mauris.'
       },
       {
-        src: 'https://loremflickr.com/248/152?random=69',
+        src: 'https://loremflickr.com/248/152?random=699',
         description: 'Phasellus eros mauris.'
       }
     ]
