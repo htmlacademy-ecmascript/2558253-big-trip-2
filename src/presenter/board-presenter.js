@@ -27,7 +27,12 @@ export default class BoardPresenter {
     render(new FormEditView(points[1], destinations, offers), this.#eventsListComponent.element);
 
     for (const point of points) {
-      render(new PointView(point, destinations, offers), this.#eventsListComponent.element);
+      this.#renderPoint(point, destinations, offers);
     }
+  }
+
+  #renderPoint(point, destinations, offers) {
+    const pointComponent = new PointView(point, destinations, offers);
+    render(pointComponent, this.#eventsListComponent.element);
   }
 }
