@@ -1,6 +1,6 @@
-import { createElement } from '../render.js';
 import { humanizeDate } from '../utils.js';
 import { getDateDifference } from '../utils.js';
+import AbstractView from '../framework/view/abstract-view.js';
 
 function createOfferTemplate({title, price}) {
   return (
@@ -55,26 +55,25 @@ function createPointTemplate(point, destinations, offers) {
   );
 }
 
-export default class PointView {
-  constructor(point, destinations, offers) {
+export default class PointView extends AbstractView {
+  #handleEditClick = null;
+
+  constructor(point, destinations, offers, onEditClick) {
+    super();
     this.point = point;
     this.destinations = destinations;
     this.offers = offers;
+    this.#handleEditClick = onEditClick;
+
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
   }
 
-  getTemplate() {
+  get template() {
     return createPointTemplate(this.point, this.destinations, this.offers);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
+  #editClickHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleEditClick();
+  };
 }
