@@ -3,6 +3,7 @@ import SortView from '../view/sort-view.js';
 import EventsListView from '../view/events-list-view.js';
 import FormEditView from '../view/form-edit-view.js';
 import PointView from '../view/point-view.js';
+import NoPointView from '../view/no-point-view.js';
 
 export default class BoardPresenter {
   #boardContainer = null;
@@ -19,6 +20,11 @@ export default class BoardPresenter {
     const points = this.#pointModel.points;
     const destinations = this.#pointModel.destinations;
     const offers = this.#pointModel.offers;
+
+    if (points.length === 0) {
+      render (new NoPointView(), this.#boardContainer);
+      return;
+    }
 
     render(this.#sortComponent, this.#boardContainer);
     render(this.#eventsListComponent, this.#boardContainer);

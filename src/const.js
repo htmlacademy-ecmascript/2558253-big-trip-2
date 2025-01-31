@@ -10,4 +10,11 @@ const getDefaultPoint = () => ({
   type: POINT_TYPES[0]
 });
 
-export { POINT_TYPES, getDefaultPoint };
+const FilterType = {
+  EVERYTHING: 'everything',
+  FUTURE: 'future',
+  PRESENT: 'present',
+  PAST: 'past',
+};
+
+export { POINT_TYPES, getDefaultPoint, FilterType };

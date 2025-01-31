@@ -1,3 +1,5 @@
+import { getRandomArrayElement } from '../utils';
+
 const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808a',
@@ -44,8 +46,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808d',
     basePrice: 900,
-    dateFrom: '2019-07-26T22:55:56.845Z',
-    dateTo: '2019-07-30T11:22:13.375Z',
+    dateFrom: '2023-07-26T22:55:56.845Z',
+    dateTo: '2025-07-30T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca4',
     isFavorite: false,
     offers: [],
@@ -54,8 +56,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808e',
     basePrice: 5800,
-    dateFrom: '2019-08-01T22:55:56.845Z',
-    dateTo: '2019-09-14T11:22:13.375Z',
+    dateFrom: '2029-08-01T22:55:56.845Z',
+    dateTo: '2029-09-14T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca5',
     isFavorite: true,
     offers: [
@@ -66,4 +68,8 @@ const points = [
   }
 ];
 
-export { points };
+function getRandomPoint() {
+  return getRandomArrayElement(points);
+}
+
+export { getRandomPoint };
