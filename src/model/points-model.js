@@ -1,14 +1,15 @@
 import { destinations } from '../mock/destinations';
 import { offers } from '../mock/offers';
-import { points } from '../mock/points';
+import { getRandomPoint } from '../mock/points';
 
+const POINT_COUNT = 6;
 export default class PointModel {
   #points = [];
   #destinations = [];
   #offers = [];
 
   init() {
-    this.#points = structuredClone(points);
+    this.#points = structuredClone(Array.from({length: POINT_COUNT}, getRandomPoint));
     this.#destinations = structuredClone(destinations);
     this.#offers = structuredClone(offers);
   }
