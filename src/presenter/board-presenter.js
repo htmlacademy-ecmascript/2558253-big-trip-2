@@ -21,7 +21,7 @@ export default class BoardPresenter {
     const destinations = this.#pointModel.destinations;
     const offers = this.#pointModel.offers;
 
-    if (points.length === 0) {
+    if (!points.length) {
       render (new NoPointView(), this.#boardContainer);
       return;
     }

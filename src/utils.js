@@ -56,13 +56,13 @@ function isPointPast(dateTo) {
 }
 
 const filter = {
-  [FilterType.EVERYTHING]: (points) => points,
+  [FilterType.EVERYTHING]: (points) => [...points],
   [FilterType.FUTURE]: (points) => points.filter((point) => isPointFuture(point.dateFrom)),
   [FilterType.PRESENT]: (points) => points.filter((point) => isPointPresent(point.dateFrom, point.dateTo)),
   [FilterType.PAST]: (points) => points.filter((point) => isPointPast(point.dateTo)),
 };
 
-function generateFilter(points) {
+function generateFilters(points) {
   return Object.entries(filter).map(
     ([filterType, filterPoints]) => ({
       type: filterType,
@@ -71,4 +71,4 @@ function generateFilter(points) {
   );
 }
 
-export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilter };
+export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilters };

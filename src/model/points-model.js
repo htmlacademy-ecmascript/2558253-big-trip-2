@@ -2,7 +2,7 @@ import { destinations } from '../mock/destinations';
 import { offers } from '../mock/offers';
 import { getRandomPoint } from '../mock/points';
 
-const POINT_COUNT = 6;
+const POINT_COUNT = 7;
 export default class PointModel {
   #points = [];
   #destinations = [];
