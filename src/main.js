@@ -2,6 +2,7 @@ import PointModel from './model/points-model.js';
 import BoardPresenter from './presenter/board-presenter.js';
 import FilterPresenter from './presenter/filter-presenter.js';
 import InfoPresenter from './presenter/info-presenter.js';
+import { generateFilters } from './utils.js';
 
 const header = document.querySelector('.page-header');
 const infoHeader = header.querySelector('.trip-main');
@@ -18,5 +19,8 @@ pointModel.init();
 const boardPresenter = new BoardPresenter({boardContainer: tripEventsContainer, pointModel: pointModel});
 boardPresenter.init();
 
+const filters = generateFilters(pointModel.points);
 filterPresenter.init();
 infoPresenter.init();
+
+export { filters };
