@@ -10,6 +10,11 @@ export default class BoardPresenter {
   #pointModel = null;
   #sortComponent = new SortView();
   #eventsListComponent = new EventsListView();
+  #noPointView = new NoPointView();
+
+  #points = [];
+  #destinations = [];
+  #offers = [];
 
   constructor({boardContainer, pointModel}) {
     this.#boardContainer = boardContainer;
@@ -17,20 +22,20 @@ export default class BoardPresenter {
   }
 
   init() {
-    const points = this.#pointModel.points;
-    const destinations = this.#pointModel.destinations;
-    const offers = this.#pointModel.offers;
+    this.#points = [...this.#pointModel.points];
+    this.#destinations = [...this.#pointModel.destinations];
+    this.#offers = [...this.#pointModel.offers];
 
-    if (!points.length) {
-      render (new NoPointView(), this.#boardContainer);
+    if (!this.#points.length) {
+      this.#renderNoPoint();
       return;
     }
 
-    render(this.#sortComponent, this.#boardContainer);
-    render(this.#eventsListComponent, this.#boardContainer);
+    this.#renderSort();
+    this.#renderEventsListComponent();
 
-    for (const point of points) {
-      this.#renderPoint(point, destinations, offers);
+    for (const point of this.#points) {
+      this.#renderPoint(point, this.#destinations, this.#offers);
     }
   }
 
@@ -62,5 +67,17 @@ export default class BoardPresenter {
     }
 
     render(pointComponent, this.#eventsListComponent.element);
+  }
+
+  #renderSort() {
+    render(this.#sortComponent, this.#boardContainer);
+  }
+
+  #renderEventsListComponent() {
+    render(this.#eventsListComponent, this.#boardContainer);
+  }
+
+  #renderNoPoint() {
+    render (this.#noPointView, this.#boardContainer);
   }
 }
