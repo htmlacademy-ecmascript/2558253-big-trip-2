@@ -2,7 +2,7 @@ import { POINT_TYPES } from '../const.js';
 import { capitalizeFirstLetter, humanizeDate } from '../utils.js';
 import AbstractView from '../framework/view/abstract-view.js';
 
-function createFormEditTemplate(point, destinations, offers) {
+function createFormEditTemplate({point, destinations, offers}) {
   const {basePrice, dateFrom, dateTo, type} = point;
   const typeOffers = offers.find((offer) => offer.type === point.type).offers;
   const pointOffers = typeOffers.filter((typeOffer) => point.offers.includes(typeOffer.id));
@@ -107,7 +107,7 @@ function createFormEditTemplate(point, destinations, offers) {
 export default class FormEditView extends AbstractView {
   #handleFormSubmit = null;
 
-  constructor(point, destinations, offers, onFormSubmit) {
+  constructor({point, destinations, offers, onFormSubmit}) {
     super();
     this.point = point;
     this.destinations = destinations;
@@ -119,7 +119,7 @@ export default class FormEditView extends AbstractView {
   }
 
   get template() {
-    return createFormEditTemplate(this.point, this.destinations, this.offers);
+    return createFormEditTemplate({point: this.point, destinations: this.destinations, offers: this.offers});
   }
 
   #formSubmitHandler = (evt) => {

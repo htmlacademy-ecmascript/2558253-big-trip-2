@@ -12,7 +12,7 @@ function createOfferTemplate({title, price}) {
   );
 }
 
-function createPointTemplate(point, destinations, offers) {
+function createPointTemplate({point, destinations, offers}) {
   const {basePrice, dateFrom, dateTo, isFavorite, type} = point;
   const typeOffers = offers.find((off) => off.type === point.type).offers;
   const pointOffers = typeOffers.filter((typeOffer) => point.offers.includes(typeOffer.id));
@@ -61,7 +61,7 @@ export default class PointView extends AbstractView {
   #destinations = [];
   #offers = [];
 
-  constructor(point, destinations, offers, onEditClick) {
+  constructor({point, destinations, offers, onEditClick}) {
     super();
     this.#point = point;
     this.#destinations = destinations;
@@ -72,7 +72,7 @@ export default class PointView extends AbstractView {
   }
 
   get template() {
-    return createPointTemplate(this.#point, this.#destinations, this.#offers);
+    return createPointTemplate({point: this.#point, destinations: this.#destinations, offers: this.#offers});
   }
 
   #editClickHandler = (evt) => {

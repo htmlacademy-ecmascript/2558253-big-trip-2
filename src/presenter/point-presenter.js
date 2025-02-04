@@ -34,7 +34,7 @@ export default class PointPresenter {
       onFormSubmit: this.#handleFormSubmit,
     });
 
-    render(this.#point, this.#eventsListComponent);
+    render(this.#pointComponent, this.#eventsListComponent);
   }
 
   #replacePointToForm() {
