@@ -106,16 +106,18 @@ function createFormEditTemplate({point, destinations, offers}) {
 
 export default class FormEditView extends AbstractView {
   #handleFormSubmit = null;
+  #handleFormClose = null;
 
-  constructor({point, destinations, offers, onFormSubmit}) {
+  constructor({point, destinations, offers, onFormSubmit, onFormClose}) {
     super();
     this.point = point;
     this.destinations = destinations;
     this.offers = offers;
     this.#handleFormSubmit = onFormSubmit;
+    this.#handleFormClose = onFormClose;
 
     this.element.querySelector('.event--edit')?.addEventListener('submit', this.#formSubmitHandler);
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#formSubmitHandler);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#formCloseHandler);
   }
 
   get template() {
@@ -125,5 +127,10 @@ export default class FormEditView extends AbstractView {
   #formSubmitHandler = (evt) => {
     evt.preventDefault();
     this.#handleFormSubmit();
+  };
+
+  #formCloseHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFormClose();
   };
 }

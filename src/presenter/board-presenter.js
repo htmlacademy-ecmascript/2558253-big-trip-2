@@ -44,6 +44,7 @@ export default class BoardPresenter {
     const pointPresenter = new PointPresenter({
       eventsListComponent: this.#eventsListComponent.element,
       onClickFavoriteButton: this.#handlePointChange,
+      onModeChange: this.#handleModeChange,
     });
     pointPresenter.init(point, destinations, offers);
     this.#pointPresenters.set(point.id, pointPresenter);
@@ -52,6 +53,10 @@ export default class BoardPresenter {
   #handlePointChange = (updatedPoint) => {
     this.#points = updateItem(this.#points, updatedPoint);
     this.#pointPresenters.get(updatedPoint.id).init(updatedPoint, this.#destinations, this.#offers);
+  };
+
+  #handleModeChange = () => {
+    this.#pointPresenters.forEach((presenter) => presenter.resetView());
   };
 
   #renderSort() {
