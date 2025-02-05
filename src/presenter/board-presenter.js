@@ -51,7 +51,7 @@ export default class BoardPresenter {
 
   #handlePointChange = (updatedPoint) => {
     this.#points = updateItem(this.#points, updatedPoint);
-    this.#pointPresenters.get(updatedPoint.id).init(updatedPoint);
+    this.#pointPresenters.get(updatedPoint.id).init(updatedPoint, this.#destinations, this.#offers);
   };
 
   #renderSort() {
