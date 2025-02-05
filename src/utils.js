@@ -71,4 +71,8 @@ function generateFilters(points) {
   );
 }
 
-export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilters };
+function updateItem(items, update) {
+  return items.map((item) => item.id === update.id ? update : item);
+}
+
+export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilters, updateItem };

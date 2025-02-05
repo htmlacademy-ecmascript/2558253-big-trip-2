@@ -11,9 +11,11 @@ export default class PointPresenter {
   #point = null;
   #destinations = [];
   #offers = [];
+  #onClickFavoriteButton = null;
 
-  constructor({eventsListComponent}) {
+  constructor({eventsListComponent, onClickFavoriteButton}) {
     this.#eventsListComponent = eventsListComponent;
+    this.#onClickFavoriteButton = onClickFavoriteButton;
   }
 
   init(point, destinations, offers) {
@@ -29,7 +31,9 @@ export default class PointPresenter {
       destinations: this.#destinations,
       offers: this.#offers,
       onEditClick: this.#handleEditClick,
+      onClickFavoriteButton: this.#toggleFavoriteState,
     });
+
     this.#formEditComponent = new FormEditView({
       point: this.#point,
       destinations: this.#destinations,
@@ -58,6 +62,10 @@ export default class PointPresenter {
     remove(this.#pointComponent);
     remove(this.#formEditComponent);
   }
+
+  #toggleFavoriteState = () => {
+    this.#onClickFavoriteButton({...this.#point, isFavorite: !this.#point.isFavorite});
+  };
 
   #replacePointToForm() {
     replace(this.#formEditComponent, this.#pointComponent);
