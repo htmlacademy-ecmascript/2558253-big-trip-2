@@ -12,7 +12,7 @@ function createOfferTemplate({title, price}) {
   );
 }
 
-function createPointTemplate(point, destinations, offers) {
+function createPointTemplate({point, destinations, offers}) {
   const {basePrice, dateFrom, dateTo, isFavorite, type} = point;
   const typeOffers = offers.find((off) => off.type === point.type).offers;
   const pointOffers = typeOffers.filter((typeOffer) => point.offers.includes(typeOffer.id));
@@ -56,24 +56,33 @@ function createPointTemplate(point, destinations, offers) {
 }
 
 export default class PointView extends AbstractView {
-  #handleEditClick = null;
+  #openEditForm = null;
+  #point = null;
+  #destinations = [];
+  #offers = [];
+  #onClickFavoriteButton = null;
 
-  constructor(point, destinations, offers, onEditClick) {
+  constructor({point, destinations, offers, onOpenEditForm, onClickFavoriteButton}) {
     super();
-    this.point = point;
-    this.destinations = destinations;
-    this.offers = offers;
-    this.#handleEditClick = onEditClick;
+    this.#point = point;
+    this.#destinations = destinations;
+    this.#offers = offers;
+    this.#openEditForm = onOpenEditForm;
+    this.#onClickFavoriteButton = onClickFavoriteButton;
 
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#editClickHandler);
+    this.element.querySelector('.event__favorite-btn').addEventListener('click', this.#onClickFavoriteButtonHandler);
   }
 
   get template() {
-    return createPointTemplate(this.point, this.destinations, this.offers);
+    return createPointTemplate({point: this.#point, destinations: this.#destinations, offers: this.#offers});
   }
 
-  #editClickHandler = (evt) => {
-    evt.preventDefault();
-    this.#handleEditClick();
+  #editClickHandler = () => {
+    this.#openEditForm();
+  };
+
+  #onClickFavoriteButtonHandler = () => {
+    this.#onClickFavoriteButton();
   };
 }
