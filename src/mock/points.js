@@ -4,8 +4,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808a',
     basePrice: 1500,
-    dateFrom: '2019-07-10T22:55:56.845Z',
-    dateTo: '2019-07-21T11:22:13.375Z',
+    dateFrom: '2025-01-10T22:55:56.845Z',
+    dateTo: '2025-01-21T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca1',
     isFavorite: false,
     offers: [
@@ -19,8 +19,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808b',
     basePrice: 1000,
-    dateFrom: '2019-07-22T22:55:56.845Z',
-    dateTo: '2019-07-25T11:22:13.375Z',
+    dateFrom: '2025-02-01T22:55:56.845Z',
+    dateTo: '2025-02-12T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca2',
     isFavorite: false,
     offers: [
@@ -32,8 +32,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808c',
     basePrice: 3400,
-    dateFrom: '2019-07-26T22:55:56.845Z',
-    dateTo: '2019-07-30T11:22:13.375Z',
+    dateFrom: '2025-04-26T22:55:56.845Z',
+    dateTo: '2025-04-30T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca3',
     isFavorite: false,
     offers: [
@@ -46,8 +46,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808d',
     basePrice: 900,
-    dateFrom: '2023-07-26T22:55:56.845Z',
-    dateTo: '2025-07-30T11:22:13.375Z',
+    dateFrom: '2025-05-09T22:55:56.845Z',
+    dateTo: '2025-05-19T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca4',
     isFavorite: false,
     offers: [],
@@ -56,8 +56,8 @@ const points = [
   {
     id: 'f4b62099-293f-4c3d-a702-94eec4a2808e',
     basePrice: 5800,
-    dateFrom: '2029-08-01T22:55:56.845Z',
-    dateTo: '2029-09-14T11:22:13.375Z',
+    dateFrom: '2025-06-01T22:55:56.845Z',
+    dateTo: '2025-06-02T11:22:13.375Z',
     destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca5',
     isFavorite: true,
     offers: [
@@ -65,11 +65,46 @@ const points = [
       'b4c3e4e6-9053-42ce-b747-e281314baa42'
     ],
     type: 'restaurant'
-  }
+  },
+  {
+    id: 'f4b62099-333f-4c3d-a702-94eec4a2808d',
+    basePrice: 1520,
+    dateFrom: '2025-07-09T22:55:56.845Z',
+    dateTo: '2025-07-13T11:22:13.375Z',
+    destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca2',
+    isFavorite: false,
+    offers: [],
+    type: 'sightseeing'
+  },
+  {
+    id: 'f4b624549-293f-4c3d-a702-94eec4a2808b',
+    basePrice: 880,
+    dateFrom: '2025-08-30T22:55:56.845Z',
+    dateTo: '2025-09-02T11:22:13.375Z',
+    destination: 'cfe416cq-10xa-ye10-8077-2fs9a01edca5',
+    isFavorite: false,
+    offers: [
+      'b4c3e4e6-9053-42ce-b747-e281314baa36'
+    ],
+    type: 'train'
+  },
 ];
 
-function getRandomPoint() {
-  return getRandomArrayElement(points);
-}
+const getRandomPoint = (() => {
+  const usedIds = new Set();
+
+  return () => {
+    const availablePoints = points.filter((point) => !usedIds.has(point.id));
+
+    if (availablePoints.length === 0) {
+      usedIds.clear(); // Сброс при исчерпании всех точек
+      return getRandomArrayElement(points);
+    }
+
+    const randomPoint = getRandomArrayElement(availablePoints);
+    usedIds.add(randomPoint.id);
+    return randomPoint;
+  };
+})();
 
 export { getRandomPoint };
