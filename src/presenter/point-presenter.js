@@ -98,15 +98,15 @@ export default class PointPresenter {
     this.#mode = Mode.DEFAULT;
   }
 
+  #openEditForm = () => {
+    this.#replacePointToForm();
+  };
+
   #escKeyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
       this.#replaceFormToPoint();
     }
-  };
-
-  #openEditForm = () => {
-    this.#replacePointToForm();
   };
 
   #handleFormSubmit = () => {

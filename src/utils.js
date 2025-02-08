@@ -75,4 +75,22 @@ function updateItem(items, update) {
   return items.map((item) => item.id === update.id ? update : item);
 }
 
-export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilters, updateItem };
+function sortByDefault(pointA, pointB) {
+  return dayjs(pointA.dateFrom).valueOf() - dayjs(pointB.dateFrom).valueOf();
+}
+
+function sortByPrice(pointA, pointB) {
+  return pointB.basePrice - pointA.basePrice;
+}
+
+function sortByTime(pointA, pointB) {
+  const pointADuration = getPointDuration(pointA);
+  const pointBDuration = getPointDuration(pointB);
+  return pointBDuration - pointADuration;
+}
+
+function getPointDuration(point) {
+  return dayjs(point.dateTo).diff(dayjs(point.dateFrom));
+}
+
+export { getRandomArrayElement, humanizeDate, getDateDifference, capitalizeFirstLetter, generateFilters, updateItem, sortByDefault, sortByPrice, sortByTime };
